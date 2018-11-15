@@ -18,3 +18,8 @@ C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\MainWindow.g.cs
 C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\App.g.cs
 C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\CincoWarMaker_MarkupCompile.cache
 C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\CincoWarMaker_MarkupCompile.lref
+C:\Users\Robotek9\Documents\GitHub\OUTWAR\CincoWarMaker\obj\Debug\CincoWarMaker.csprojAssemblyReference.cache
+C:\Users\Robotek9\Documents\GitHub\OUTWAR\CincoWarMaker\obj\Debug\MainWindow.g.cs
+C:\Users\Robotek9\Documents\GitHub\OUTWAR\CincoWarMaker\obj\Debug\App.g.cs
+C:\Users\Robotek9\Documents\GitHub\OUTWAR\CincoWarMaker\obj\Debug\CincoWarMaker_MarkupCompile.cache
+C:\Users\Robotek9\Documents\GitHub\OUTWAR\CincoWarMaker\obj\Debug\CincoWarMaker_MarkupCompile.lref

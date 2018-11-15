@@ -31,6 +31,7 @@ namespace CincoWarMaker
 
 		private async Task Login()
 		{
+			//deadringer comment 21:06 20181114
 			var login = new Dictionary<string, string>
 			{
 				{ "login_username", "TheMooninites" },
