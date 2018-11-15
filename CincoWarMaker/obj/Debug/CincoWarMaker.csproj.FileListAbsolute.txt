@@ -13,3 +13,8 @@ c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMak
 c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.csproj.CoreCompileInputs.cache
 c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.exe
 c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.pdb
+C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\CincoWarMaker.csprojResolveAssemblyReference.cache
+C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\MainWindow.g.cs
+C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\App.g.cs
+C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\CincoWarMaker_MarkupCompile.cache
+C:\Users\pmk72\OneDrive\Documents\OUTWAR\CincoWarMaker\obj\Debug\CincoWarMaker_MarkupCompile.lref
