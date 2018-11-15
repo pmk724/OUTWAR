@@ -1,0 +1,15 @@
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.csprojAssemblyReference.cache
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\MainWindow.g.cs
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\App.g.cs
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker_MarkupCompile.cache
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker_MarkupCompile.lref
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\bin\Debug\CincoWarMaker.exe.config
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\bin\Debug\CincoWarMaker.exe
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\bin\Debug\CincoWarMaker.pdb
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\MainWindow.baml
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.g.resources
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.Properties.Resources.resources
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.csproj.GenerateResource.cache
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.csproj.CoreCompileInputs.cache
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.exe
+c:\users\robotek9\source\repos\CincoWarMaker\CincoWarMaker\obj\Debug\CincoWarMaker.pdb
