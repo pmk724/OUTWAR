@@ -17,10 +17,15 @@ namespace CincoWarMaker
 			client = new HttpClient();
 			var doc = new HtmlDocument();
 
+<<<<<<< HEAD
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             Login();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
+=======
+			Login();
+		}
+>>>>>>> 3f6bdfa9c41ce23f91f04d6652f8c5a6e57e85c1
 		/*
 		 * // From String
 			var doc = new HtmlDocument();
