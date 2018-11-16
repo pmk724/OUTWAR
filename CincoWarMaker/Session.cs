@@ -17,8 +17,10 @@ namespace CincoWarMaker
 			client = new HttpClient();
 			var doc = new HtmlDocument();
 
-			//Login();
-		}
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            Login();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+        }
 		/*
 		 * // From String
 			var doc = new HtmlDocument();
@@ -41,7 +43,27 @@ namespace CincoWarMaker
 			var response = await client.PostAsync("http://torax.outwar.com/index.php", content);
 			var responseString = await response.Content.ReadAsStringAsync();
 			var accountsString = await client.GetStringAsync("http://torax.outwar.com/myaccount.php");
-			//return accountsString;
-		}
-	}
+            ReadAccounts(accountsString);
+        }
+
+        private void ReadAccounts(string src)
+        {
+            /*This needs a bunch of work. It currently executes but the data returned is not what's expected.*/
+
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(src);
+
+            // used a method to select a single node in html document. I'm passing the node in as an XPath - you can get this by inspecting an html doc, and clicking Copy on a specified piece of code.
+            // the node object has a property - .InnerHtml - this returns the information inside the specified tags.
+            var htmlNodes = htmlDoc.DocumentNode.SelectSingleNode("//*[@id=\"characterTable\"]/tbody/tr[1]/td[2]/a");
+            Console.WriteLine("Name: " + htmlNodes.InnerHtml);
+            htmlNodes = htmlDoc.DocumentNode.SelectSingleNode("//*[@id=\"characterTable\"]/tbody/tr[1]/td[3]");
+            Console.WriteLine("Level: " + htmlNodes.InnerHtml);
+            htmlNodes = htmlDoc.DocumentNode.SelectSingleNode("//*[@id=\"characterTable\"]/tbody/tr[1]/td[4]");
+            var inht = htmlNodes.InnerHtml;
+            Console.WriteLine("Crew: " + htmlNodes.InnerHtml);
+
+            
+        }
+    }
 }

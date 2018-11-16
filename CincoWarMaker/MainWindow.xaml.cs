@@ -25,6 +25,7 @@ namespace CincoWarMaker
 			Console.WriteLine("Oh, Hello!");
             InitializeComponent();
 			Session sess = new Session();
+
         }
     }
 }
