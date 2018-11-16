@@ -21,6 +21,7 @@ namespace CincoWarMaker
 		/// <param name="suid"></param>
 		public Account(string name, int suid)
 		{
+			// Adding comment while I demonstrate push process
 			this.name = name;
 			this.suid = suid;
 		}
