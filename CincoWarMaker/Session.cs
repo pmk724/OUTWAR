@@ -17,7 +17,7 @@ namespace CincoWarMaker
 			client = new HttpClient();
 			var doc = new HtmlDocument();
 
-			Login();
+			//Login();
 		}
 		/*
 		 * // From String
