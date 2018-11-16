@@ -4,8 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
-// seeing if this change is saved when i push
+using HtmlAgilityPack;
 
 namespace CincoWarMaker
 {
@@ -31,6 +30,7 @@ namespace CincoWarMaker
 
 		private async Task Login()
 		{
+			//deadringer comment 21:06 20181114
 			var login = new Dictionary<string, string>
 			{
 				{ "login_username", "TheMooninites" },
