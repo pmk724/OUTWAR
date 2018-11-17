@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,49 +11,57 @@ namespace CincoWarMaker
 {
     class Session
     {
-		private static HttpClient client;
+		private static HttpClient client; // Primary object for making GET and POST calls
+		private static CookieContainer cookies; // Track session cookies for the HttpClient
+		private static HttpClientHandler handler; // Not really sure what this does, but I'd imagine it just maintains the list of cookies as they change with each request
+		private static string sessid; // The cookie token identifying the login session.  This value is needed in order to open a web browser logged into the current session
 
 		public Session()
 		{
-			client = new HttpClient();
-			var doc = new HtmlDocument();
+			// Initialize standard web/cookie objects
+			cookies = new CookieContainer();
+			handler = new HttpClientHandler();
+			handler.CookieContainer = cookies;
+			client = new HttpClient(handler);
+			
+			var doc = new HtmlDocument(); // Initialize HtmlDocument object from HTML Agility Pack library
 
-<<<<<<< HEAD
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            Login();
+			// Note:  We cannot "await" this call in a non-async method, and constructors cannot be declared as async
+			// We may need to find another approach to this logic in the future.  The current setup works, but warnings exist for a reason so we're probably missing the ideal approach
+			Login();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
-=======
-			Login();
-		}
->>>>>>> 3f6bdfa9c41ce23f91f04d6652f8c5a6e57e85c1
-		/*
-		 * // From String
-			var doc = new HtmlDocument();
-			doc.LoadHtml(html); */
-
-		/*	var url = "http://html-agility-pack.net/";
-			var web = new HtmlWeb();
-			var doc = web.Load(url); */
 
 		private async Task Login()
 		{
-			//deadringer comment 21:06 20181114
 			var login = new Dictionary<string, string>
-			{
+			{ // Write data to send with the POST request for the Outwar login
 				{ "login_username", "TheMooninites" },
 				{ "login_password", "TaCtIhMfS1=" },
 				{ "serverid", "2" }
 			};
 			var content = new FormUrlEncodedContent(login);
-			var response = await client.PostAsync("http://torax.outwar.com/index.php", content);
-			var responseString = await response.Content.ReadAsStringAsync();
+			var response = await client.PostAsync("http://torax.outwar.com/index.php", content); // The actual POST request to the Outwar server
+			var responseString = await response.Content.ReadAsStringAsync(); // Read the response from the login request
+			// @TODO read the response to verify that the login request was successful.  There are two alternate possibilities:
+			// 1) Invalid login/password, so the login fails
+			// 2) After three invalid logins within fifteen minutes, the IP will be locked out and unable to login to any account
+
+			/*
+			// @TODO figure out how to read the cookies from the HttpClient object.  Once we're able to read the cookies, extract the value of the 
+			IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
+			foreach (Cookie cookie in responseCookies)
+				Console.WriteLine(cookie.Name + ": " + cookie.Value);
+			System.Diagnostics.Process.Start("http://torax.outwar.com/profile.php?rgsessid=" + sessid);
+
 			var accountsString = await client.GetStringAsync("http://torax.outwar.com/myaccount.php");
             ReadAccounts(accountsString);
         }
 
         private void ReadAccounts(string src)
         {
+			// @TODO fix this up to make it read proper data
             /*This needs a bunch of work. It currently executes but the data returned is not what's expected.*/
 
             var htmlDoc = new HtmlDocument();
