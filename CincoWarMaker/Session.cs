@@ -15,49 +15,61 @@ namespace CincoWarMaker
 		private static CookieContainer cookies; // Track session cookies for the HttpClient
 		private static HttpClientHandler handler; // Not really sure what this does, but I'd imagine it just maintains the list of cookies as they change with each request
 		private static string sessid; // The cookie token identifying the login session.  This value is needed in order to open a web browser logged into the current session
+		private static Uri loginPage, accountPage, homePage;
 
 		public Session()
 		{
+			loginPage = new Uri("http://torax.outwar.com/index.php");
+			accountPage = new Uri("http://torax.outwar.com/myaccount.php");
+			homePage = new Uri("http://torax.outwar.com/home.php");
 			// Initialize standard web/cookie objects
 			cookies = new CookieContainer();
 			handler = new HttpClientHandler();
 			handler.CookieContainer = cookies;
 			client = new HttpClient(handler);
-			
 			var doc = new HtmlDocument(); // Initialize HtmlDocument object from HTML Agility Pack library
-
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-			// Note:  We cannot "await" this call in a non-async method, and constructors cannot be declared as async
-			// We may need to find another approach to this logic in the future.  The current setup works, but warnings exist for a reason so we're probably missing the ideal approach
-			Login();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
-		private async Task Login()
+		/// <summary>
+		/// Empty login constructor to login with default credentials (RGA trust)
+		/// </summary>
+		/// <returns></returns>
+		public async Task Login() { await Login("trust", "rockets123", "2"); }
+
+		/// <summary>
+		/// Login with specified Username, Password, and ServerID
+		/// </summary>
+		/// <param name="user">RGA USername</param>
+		/// <param name="pass">RGA Password</param>
+		/// <param name="sid">ServerID (2=Torax, 1=Sigil)</param>
+		/// <returns></returns>
+		public async Task Login(string user, string pass, string sid)
 		{
 			var login = new Dictionary<string, string>
 			{ // Write data to send with the POST request for the Outwar login
-				{ "login_username", "TheMooninites" },
-				{ "login_password", "TaCtIhMfS1=" },
-				{ "serverid", "2" }
+				{ "login_username"	,	user	},
+				{ "login_password"	,	pass	},
+				{ "serverid"		,	sid		}
 			};
 			var content = new FormUrlEncodedContent(login);
-			var response = await client.PostAsync("http://torax.outwar.com/index.php", content); // The actual POST request to the Outwar server
+			var response = await client.PostAsync(loginPage, content); // The actual POST request to the Outwar server
 			var responseString = await response.Content.ReadAsStringAsync(); // Read the response from the login request
 			// @TODO read the response to verify that the login request was successful.  There are two alternate possibilities:
 			// 1) Invalid login/password, so the login fails
 			// 2) After three invalid logins within fifteen minutes, the IP will be locked out and unable to login to any account
 
-			/*
-			// @TODO figure out how to read the cookies from the HttpClient object.  Once we're able to read the cookies, extract the value of the 
-			IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
+			var accountsString = await client.GetStringAsync(accountPage);
+            ReadAccounts(accountsString);
+        }
+
+		public void OpenInBrowser()
+		{
+			// @TODO figure out how to read the cookies from the HttpClient object.  Once we're able to read the cookies, extract the value of the rgsessid so we can open the session in a browser
+			IEnumerable<Cookie> responseCookies = cookies.GetCookies(homePage).Cast<Cookie>();
 			foreach (Cookie cookie in responseCookies)
 				Console.WriteLine(cookie.Name + ": " + cookie.Value);
 			System.Diagnostics.Process.Start("http://torax.outwar.com/profile.php?rgsessid=" + sessid);
-
-			var accountsString = await client.GetStringAsync("http://torax.outwar.com/myaccount.php");
-            ReadAccounts(accountsString);
-        }
+		}
 
         private void ReadAccounts(string src)
         {
@@ -76,7 +88,6 @@ namespace CincoWarMaker
             htmlNodes = htmlDoc.DocumentNode.SelectSingleNode("//*[@id=\"characterTable\"]/tbody/tr[1]/td[4]");
             var inht = htmlNodes.InnerHtml;
             Console.WriteLine("Crew: " + htmlNodes.InnerHtml);
-
             
         }
     }
